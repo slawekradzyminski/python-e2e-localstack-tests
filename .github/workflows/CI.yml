@@ -40,4 +40,5 @@ jobs:
         ADMIN_USERNAME: "admin"
         ADMIN_PASSWORD: "admin"
         BACKEND_URL: "http://localhost:4001"
+        IS_HEADLESS: "true"
       run: pytest tests/

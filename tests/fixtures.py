@@ -21,7 +21,8 @@ frontend_url = os.getenv("FRONTEND_URL")
 @pytest.fixture
 def chrome_browser():
     options = Options()
-    options.add_argument("--headless")
+    if os.getenv("IS_HEADLESS") == "true":
+        options.add_argument("--headless")
     service = Service(ChromeDriverManager().install())
     browser = Chrome(service=service, options=options)
     yield browser
