@@ -8,9 +8,9 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from api import delete_user
 
-from api.post_sign_in import sign_in
-from api.post_sign_up import register_user
-from api.delete_user import delete_user
+from api.post_sign_in import SignIn
+from api.delete_user import DeleteUser
+from api.post_sign_up import SignUp
 from generators.user_generator import get_random_user
 from pages.home_page import HomePage
 from dotenv import load_dotenv
@@ -37,18 +37,18 @@ def logged_in_test(chrome_browser: webdriver):
     setup_user_local_storage(chrome_browser, login_response)
     chrome_browser.get(frontend_url)
     yield HomePage(chrome_browser), login_response["token"], user
-    cleanup_test_user(user, login_response["token"])
+    DeleteUser().api_call(user.username, login_response["token"])
 
 
 def setup_test_user():
     user = get_random_user()
-    register_user(user)
+    SignUp().api_call(user)
     return user
 
 
 def login_test_user(browser, user):
     browser.get(frontend_url)
-    login_response = sign_in(user.username, user.password)
+    login_response = SignIn().api_call(user.username, user.password)
     return login_response
 
 

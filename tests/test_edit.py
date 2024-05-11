@@ -1,7 +1,7 @@
 import time
 from typing import Tuple
 from api.data.register import User
-from api.get_user import get_user_details
+from api.get_user import GetUser
 from generators.user_generator import get_random_user
 from pages.home_page import HomePage
 from .fixtures import logged_in_test, chrome_browser  # used
@@ -25,7 +25,7 @@ def test_edit(logged_in_test: Tuple[HomePage, str, User]):
 
 def assert_user_via_api(user, newUser, token):
     time.sleep(1)  # give server some time to process changes
-    user_details = get_user_details(user.username, token)
+    user_details = GetUser().api_call(user.username, token)
     assert user_details.firstName == newUser.firstName
     assert user_details.lastName == newUser.lastName
     assert user_details.email == newUser.email

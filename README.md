@@ -9,3 +9,10 @@ ADMIN_USERNAME=admin
 ADMIN_PASSWORD=admin
 ```
 
+## Run in parallel
+
+Warning: this mode disables test logs.
+
+```
+pytest tests/ -n 4
+```

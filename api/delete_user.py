@@ -1,16 +1,10 @@
-import requests
-import os
+from api.base_api import BaseAPI
 
-from api.data.login import LoginRequestDto, LoginResponseDto
-from dotenv import load_dotenv
-
-load_dotenv()
-
-
-def delete_user(username, token):
-    response = requests.delete(
-        f"{os.getenv('BACKEND_URL')}/users/{username}",
-        headers={"Authorization": f"Bearer {token}"},
-    )
-    response.raise_for_status()
-    assert response.status_code == 204, "Failed to delete user"
+class DeleteUser(BaseAPI):
+    def api_call(self, username, token):
+        response = self.make_request(
+            "DELETE",
+            f"users/{username}",
+            headers={"Authorization": f"Bearer {token}"}
+        )
+        assert response.status_code == 204, "Failed to delete user"
