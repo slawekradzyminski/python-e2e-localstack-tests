@@ -1,11 +1,5 @@
 from dataclasses import dataclass, asdict
 from typing import List
-from enum import Enum
-
-
-class Role(Enum):
-    ROLE_ADMIN = "ROLE_ADMIN"
-    ROLE_CLIENT = "ROLE_CLIENT"
 
 
 @dataclass
@@ -24,7 +18,11 @@ class LoginResponseDto:
     email: str
     firstName: str
     lastName: str
-    roles: List[Role]
+    roles: List[str]
     
     def to_dict(self):
         return asdict(self)
+
+    @classmethod
+    def from_json(cls, data):
+        return cls(**data)

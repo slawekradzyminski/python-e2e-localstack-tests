@@ -1,11 +1,16 @@
 import requests
+import os
 
-from api.data.login import LoginRequestDto
+from api.data.login import LoginRequestDto, LoginResponseDto
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 def sign_in(username, password):
     login_request = LoginRequestDto(username=username, password=password).to_dict()
-    response = requests.post("http://localhost:4001/users/signin", json=login_request)
+    response = requests.post(f"{os.getenv('BACKEND_URL')}/users/signin", json=login_request)
     response.raise_for_status()
     assert response.status_code == 200, "Failed to log in"
-    return response.json()
+    login_response = LoginResponseDto.from_json(response.json())
+    return login_response.to_dict()
