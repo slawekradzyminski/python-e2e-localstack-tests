@@ -1,11 +1,11 @@
 from faker import Faker
 
-from api.data.register import RegisterRequestDto
+from api.data.register import User
 
 fake = Faker()
 
-def get_random_user() -> RegisterRequestDto:
-    return RegisterRequestDto(
+def get_random_user() -> User:
+    return User(
         username=fake.user_name(),
         password=fake.password(),
         email=fake.email(),

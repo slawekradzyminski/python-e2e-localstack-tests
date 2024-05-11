@@ -1,16 +1,14 @@
 from dataclasses import dataclass, asdict
-from typing import List, TypeAlias
+from typing import List
 
 @dataclass
-class RegisterRequestDto:
+class UserDetails:
     username: str
-    password: str
     email: str
     firstName: str
     lastName: str
     roles: List[str]
+    id: int
 
     def to_dict(self):
         return asdict(self)
-    
-User: TypeAlias = RegisterRequestDto

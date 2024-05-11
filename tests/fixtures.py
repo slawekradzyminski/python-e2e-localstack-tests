@@ -1,6 +1,7 @@
 import json
 import pytest
 import os
+from selenium import webdriver
 from selenium.webdriver import Chrome
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
@@ -30,7 +31,7 @@ def chrome_browser():
 
 
 @pytest.fixture
-def logged_in_test(chrome_browser):
+def logged_in_test(chrome_browser: webdriver):
     user = setup_test_user()
     login_response = login_test_user(chrome_browser, user)
     setup_user_local_storage(chrome_browser, login_response)

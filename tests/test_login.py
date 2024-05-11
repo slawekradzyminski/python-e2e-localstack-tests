@@ -21,6 +21,6 @@ def test_successful_login(login_page):
 
 
 def test_failed_login(login_page):
-    login_page.attempt_login("wrong", "wrong", LoginPage).verify_error_alert(
+    login_page.attempt_login("wrong", "wrong", LoginPage).get_alert().verify_alert_danger(
         "Invalid username/password supplied"
     )

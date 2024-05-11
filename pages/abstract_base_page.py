@@ -1,8 +1,9 @@
+from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 
 
 class AbstractBasePage:
-    def __init__(self, driver):
+    def __init__(self, driver: webdriver):
         self.driver = driver
         self.wait = WebDriverWait(self.driver, 10)
 
