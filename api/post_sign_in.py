@@ -12,5 +12,5 @@ def sign_in(username, password):
     response = requests.post(f"{os.getenv('BACKEND_URL')}/users/signin", json=login_request)
     response.raise_for_status()
     assert response.status_code == 200, "Failed to log in"
-    login_response = LoginResponseDto.from_json(response.json())
-    return login_response.to_dict()
+    return response.json()
+
