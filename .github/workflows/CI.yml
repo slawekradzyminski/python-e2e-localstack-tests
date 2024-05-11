@@ -9,12 +9,6 @@ jobs:
       matrix:
         python-version: ['3.12.1']
 
-    env:
-      BASE_URL: "http://localhost:8081"
-      ADMIN_USERNAME: "admin"
-      ADMIN_PASSWORD: "admin"
-      BACKEND_URL: "http://localhost:4001"
-
     steps:
     - uses: actions/checkout@v4
 
@@ -41,4 +35,9 @@ jobs:
       run: pip install -r requirements.txt
 
     - name: GUI tests
+      env:
+        BASE_URL: "http://localhost:8081"
+        ADMIN_USERNAME: "admin"
+        ADMIN_PASSWORD: "admin"
+        BACKEND_URL: "http://localhost:4001"
       run: pytest tests/

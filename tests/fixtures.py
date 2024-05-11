@@ -27,10 +27,9 @@ def chrome_browser():
 def logged_in_test(chrome_browser):
     chrome_browser.get(os.getenv("FRONTEND_URL"))
     login_response = sign_in(os.getenv("ADMIN_USERNAME"), os.getenv("ADMIN_PASSWORD"))
-    token = login_response["token"]
     setup_user_local_storage(chrome_browser, login_response)
     chrome_browser.get(os.getenv("FRONTEND_URL"))
-    return HomePage(chrome_browser), token
+    return HomePage(chrome_browser), login_response["token"]
 
 
 def setup_user_local_storage(browser, login_response):
