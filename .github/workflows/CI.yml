@@ -17,9 +17,6 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
 
-    - name: Installing package list
-      run: apt list --installed
-
     - name: Setup Chrome
       uses: browser-actions/setup-chrome@latest
 
@@ -27,6 +24,4 @@ jobs:
       run: pip install -r requirements.txt
 
     - name: GUI tests
-      uses: GabrielBB/xvfb-action@v1.6
-      with:
-        run: pytest tests/test_web.py
+      run: pytest tests/test_web.py
