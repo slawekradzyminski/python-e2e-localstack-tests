@@ -1,9 +1,10 @@
+from typing import Type, TypeVar
 from selenium import webdriver
 from components.alert import AlertComponent
 from pages.abstract_base_page import AbstractBasePage
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
 
+T = TypeVar('T', bound='AbstractBasePage')
 
 class LoginPage(AbstractBasePage):
     username_input = (By.NAME, "username")
@@ -14,7 +15,7 @@ class LoginPage(AbstractBasePage):
     def __init__(self, driver: webdriver):
         super().__init__(driver)
 
-    def attempt_login(self, username: str, password: str, expected_page: AbstractBasePage):
+    def attempt_login(self, username: str, password: str, expected_page: Type[T]) -> T:
         self.driver.find_element(*self.username_input).send_keys(username)
         self.driver.find_element(*self.password_input).send_keys(password)
         self.driver.find_element(*self.login_button).click()

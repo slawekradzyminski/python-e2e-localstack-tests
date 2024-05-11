@@ -3,7 +3,6 @@ from selenium.webdriver.common.by import By
 from api.data.register import User
 from components.alert import AlertComponent
 from pages.abstract_base_page import AbstractBasePage
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 from pages.edit_page import EditPage

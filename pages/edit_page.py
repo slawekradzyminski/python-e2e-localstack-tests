@@ -3,6 +3,9 @@ from selenium.webdriver.common.by import By
 from pages.abstract_base_page import AbstractBasePage
 from selenium.webdriver.support import expected_conditions as EC
 from api.data.register import User
+from typing import Type, TypeVar
+
+T = TypeVar('T', bound='AbstractBasePage')
 
 class EditPage(AbstractBasePage):
     first_name_input = (By.NAME, "firstName")
@@ -23,7 +26,7 @@ class EditPage(AbstractBasePage):
         assert self.driver.find_element(*self.username_input).get_attribute('value') == user.username
         assert self.driver.find_element(*self.roles_input).get_attribute('value') == ','.join(user.roles)
         
-    def edit_user(self, newUser: User, expected_page: AbstractBasePage):
+    def edit_user(self, newUser: User, expected_page: Type[T]) -> T:
         self.wait.until(EC.visibility_of_element_located(self.first_name_input))
         self.driver.find_element(*self.first_name_input).clear()
         self.driver.find_element(*self.first_name_input).send_keys(newUser.firstName)
