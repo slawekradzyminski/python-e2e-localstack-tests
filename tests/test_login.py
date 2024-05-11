@@ -1,7 +1,7 @@
 import pytest
 from pages.home_page import HomePage
 from pages.login_page import LoginPage
-from .chrome_fixture import chrome_browser
+from .fixtures import chrome_browser
 
 
 @pytest.fixture
