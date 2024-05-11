@@ -1,7 +1,7 @@
 from selenium.webdriver import Chrome
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
-from chrome_fixture import chrome_browser
+from .chrome_fixture import chrome_browser
 from pages.home_page import HomePage
 from pages.login_page import LoginPage
 
