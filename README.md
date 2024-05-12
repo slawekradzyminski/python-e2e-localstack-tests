@@ -19,7 +19,7 @@ pytest tests/ -n 4
 
 ## Allure
 
-The project should deploy allure report to github pages.
+The project should deploy allure report to github pages. The report is generated from sequentional test execution job.
 
 To run allure report locally use the following command:
 
