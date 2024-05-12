@@ -16,3 +16,13 @@ Warning: this mode disables test logs.
 ```
 pytest tests/ -n 4
 ```
+
+## Allure
+
+The project should deploy allure report to github pages.
+
+To run allure report locally use the following command:
+
+```
+allure serve allure-results
+```
