@@ -7,7 +7,7 @@ fake = Faker()
 def generate_username() -> str:
     username = fake.user_name()
     attempts = 0
-    while len(username) < 4 and attempts < 20:
+    while len(username) < 4 and attempts < 10:
         username = fake.user_name()
         attempts += 1
     return username
@@ -15,7 +15,7 @@ def generate_username() -> str:
 def generate_password() -> str:
     password = fake.password()
     attempts = 0
-    while len(password) < 4 and attempts < 20:
+    while len(password) < 4 and attempts < 10:
         password = fake.password()
         attempts += 1
     return password
