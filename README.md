@@ -18,6 +18,7 @@ Warning: this mode disables test logs.
 pytest tests/ -n 4
 ```
 
+
 ## Allure
 
 The project should deploy allure report to github pages. The report is generated from sequentional test execution job.
