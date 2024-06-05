@@ -112,7 +112,7 @@ jobs:
         BACKEND_URL: "http://localhost:4001"
         IS_HEADLESS: "true"
       run: pytest tests/ -n auto
-  test_api:
+  test_only_api:
     runs-on: ubuntu-latest
     strategy:
       matrix:
