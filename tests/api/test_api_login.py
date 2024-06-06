@@ -27,7 +27,7 @@ def test_should_return_400_if_username_or_password_too_short(sign_in_api: SignIn
         assert "username length" in e.response.json()["username"], "Username error should mention length"
         assert "password length" in e.response.json()["password"], "Password error should mention length"
 
-def test_should_return_422_on_wrong_username(sign_in_api: SignIn):
+def test_should_return_422_on_wrong_password(sign_in_api: SignIn):
     try:
         sign_in_api.api_call(os.getenv("ADMIN_USERNAME"), "wrong")
     except requests.exceptions.HTTPError as e:
