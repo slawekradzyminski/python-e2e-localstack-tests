@@ -34,6 +34,9 @@ class BaseAPI:
         
         response = requests.request(method, url, **kwargs)
         
+        # Log response status code
+        self.logger.info(f"Response Status Code: {response.status_code}")
+        
         # Log response headers
         self.logger.info(
             "Response Headers:\n" + json.dumps(dict(response.headers), indent=4)
