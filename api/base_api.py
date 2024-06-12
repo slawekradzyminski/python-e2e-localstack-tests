@@ -3,7 +3,6 @@ import os
 import logging
 import json
 from dotenv import load_dotenv
-from .custom_http_connection import CustomHTTPConnection  #used
 
 load_dotenv()
 
@@ -16,10 +15,14 @@ class BaseAPI:
     def make_request(self, method, endpoint, **kwargs):
         url = f"{self.base_url}/{endpoint}"
         self.logger.info(f"Making {method} request to URL: {url}")
+        
+        # Log request headers
         if kwargs.get("headers"):
             self.logger.info(
                 "Request Headers:\n" + json.dumps(kwargs["headers"], indent=4)
             )
+        
+        # Log request body if present
         if kwargs.get("json"):
             self.logger.info(
                 "Request JSON Body:\n" + json.dumps(kwargs["json"], indent=4)
@@ -28,13 +31,23 @@ class BaseAPI:
             self.logger.info(
                 "Request Form Data:\n" + json.dumps(kwargs["data"], indent=4)
             )
-
+        
         response = requests.request(method, url, **kwargs)
-        response.raise_for_status()
-
+        
+        # Log response headers
         self.logger.info(
             "Response Headers:\n" + json.dumps(dict(response.headers), indent=4)
         )
-        if "application/json" in response.headers.get("Content-Type", ""):
-            self.logger.info("Response Body:\n" + json.dumps(response.json(), indent=4))
+        
+        # Log response body for all responses
+        try:
+            response.raise_for_status()
+            if "application/json" in response.headers.get("Content-Type", ""):
+                self.logger.info("Response Body:\n" + json.dumps(response.json(), indent=4))
+        except requests.exceptions.HTTPError as e:
+            # Log error response body
+            if "application/json" in response.headers.get("Content-Type", ""):
+                self.logger.error("Error Response Body:\n" + json.dumps(response.json(), indent=4))
+            raise
+        
         return response
