@@ -1,0 +1,30 @@
+INFO     http.client:base_api.py:17 Making POST request to URL: http://localhost:4001/users/signin
+INFO     http.client:base_api.py:27 Request JSON Body:
+{
+    "username": "wrong",
+    "password": "admin"
+}
+INFO     http.client:base_api.py:38 Response Status Code: 422
+INFO     http.client:base_api.py:41 Response Headers:
+{
+    "Vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+    "X-Content-Type-Options": "nosniff",
+    "X-XSS-Protection": "1; mode=block",
+    "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+    "Pragma": "no-cache",
+    "Expires": "0",
+    "X-Frame-Options": "DENY",
+    "Content-Type": "application/json;charset=UTF-8",
+    "Transfer-Encoding": "chunked",
+    "Date": "Wed, 12 Jun 2024 19:23:54 GMT",
+    "Keep-Alive": "timeout=60",
+    "Connection": "keep-alive"
+}
+ERROR    http.client:base_api.py:53 Error Response Body:
+{
+    "timestamp": "2024-06-12T19:23:55.625+00:00",
+    "status": 422,
+    "error": "Unprocessable Entity",
+    "message": "Invalid username/password supplied",
+    "path": "/users/signin"
+}
